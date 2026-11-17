@@ -1,8 +1,8 @@
 # Horas de Estudo
 
 **Aluno:** Madson Ferreira de Souza
-**Disciplina:** Desenvolvimento de Aplicativos
-**Trabalho:** Trabalho Final – Navegação entre telas e utilização de bibliotecas externas (Flutter)
+**Disciplina:** Sistemas Embarcados
+**Trabalho:** Trabalho Final – Desenvolvimento de Aplicativos com Flutter (navegação entre telas e utilização de bibliotecas externas)
 
 ## 1. Descrição do aplicativo
 
