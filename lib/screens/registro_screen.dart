@@ -134,27 +134,31 @@ class _RegistroScreenState extends State<RegistroScreen> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Text(
-                  'Total da semana: ${total.toStringAsFixed(1)} h',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.icon(
-                    onPressed: _abrirGrafico,
-                    icon: const Icon(Icons.bar_chart),
-                    label: const Text('Ver gráfico'),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
+      ),
+      // Na bottomNavigationBar o botao flutuante fica ACIMA dela, sem sobrepor.
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Total da semana: ${total.toStringAsFixed(1)} h',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton.icon(
+                  onPressed: _abrirGrafico,
+                  icon: const Icon(Icons.bar_chart),
+                  label: const Text('Ver gráfico'),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

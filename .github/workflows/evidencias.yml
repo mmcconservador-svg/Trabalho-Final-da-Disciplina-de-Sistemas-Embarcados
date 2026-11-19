@@ -1,0 +1,60 @@
+name: Gerar evidências (capturas no Chrome)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/evidencias.yml"
+      - "tool/capturar.js"
+
+permissions:
+  contents: write
+
+jobs:
+  capturar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Gerar plataformas web e android
+        run: |
+          flutter create --platforms=web,android --project-name horas_de_estudo .
+          git checkout -- lib test pubspec.yaml analysis_options.yaml
+
+      - run: flutter pub get
+      - run: flutter build web --release
+
+      - name: Servir o app
+        run: |
+          python3 -m http.server 8080 --directory build/web > /tmp/server.log 2>&1 &
+          sleep 3
+          curl -sSf http://localhost:8080 > /dev/null
+
+      - name: Instalar Playwright + Chromium
+        run: |
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Capturar telas
+        run: NODE_PATH=/tmp/pw/node_modules node tool/capturar.js http://localhost:8080 shots
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-capturas
+          path: shots/*.png
+
+      - name: Salvar capturas em evidencias/ no repositório
+        run: |
+          mkdir -p evidencias
+          cp shots/*.png evidencias/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidencias
+          git commit -m "Evidências: capturas das telas no Chrome (geradas automaticamente)" || echo "nada novo"
+          git pull --rebase origin main
+          git push origin HEAD:main
