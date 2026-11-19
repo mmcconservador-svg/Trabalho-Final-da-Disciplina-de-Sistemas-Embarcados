@@ -15,7 +15,7 @@ class HorasDeEstudoApp extends StatelessWidget {
       title: 'Horas de Estudo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorSchemeSeed: Colors.indigo,
         useMaterial3: true,
       ),
       home: const RegistroScreen(),

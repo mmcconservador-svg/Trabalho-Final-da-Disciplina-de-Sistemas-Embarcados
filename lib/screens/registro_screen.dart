@@ -23,12 +23,26 @@ class _RegistroScreenState extends State<RegistroScreen> {
 
   final List<double> horas = [2, 3, 1.5, 4, 2.5, 1, 0];
 
+  /// Contador de sessoes de estudo (conceito do exemplo da aula: setState).
+  int sessoes = 0;
+
+  void _incrementarSessoes() {
+    // setState avisa o Flutter que o estado mudou e a tela deve ser redesenhada.
+    setState(() {
+      sessoes++;
+    });
+  }
+
   void _abrirGrafico() {
     // Navegacao da Tela 1 -> Tela 2 (Navigator.push).
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GraficoScreen(dias: dias, horas: List.of(horas)),
+        builder: (context) => GraficoScreen(
+          dias: dias,
+          horas: List.of(horas),
+          sessoes: sessoes,
+        ),
       ),
     );
   }
@@ -38,6 +52,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
       for (var i = 0; i < horas.length; i++) {
         horas[i] = 0;
       }
+      sessoes = 0;
     });
   }
 
@@ -57,12 +72,19 @@ class _RegistroScreenState extends State<RegistroScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _incrementarSessoes,
+        tooltip: 'Registrar uma sessão de estudo',
+        icon: const Icon(Icons.add),
+        label: Text('Sessões: $sessoes'),
+      ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: Text(
-              'Ajuste as horas estudadas em cada dia da semana.',
+              'Ajuste as horas estudadas em cada dia da semana e use o botão + '
+              'para contar sessões de estudo.',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),

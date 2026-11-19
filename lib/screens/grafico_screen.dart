@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 
 /// Tela 2: mostra as horas da Tela 1 em um grafico de barras (pacote fl_chart).
 class GraficoScreen extends StatelessWidget {
-  const GraficoScreen({super.key, required this.dias, required this.horas});
+  const GraficoScreen({
+    super.key,
+    required this.dias,
+    required this.horas,
+    this.sessoes = 0,
+  });
 
   final List<String> dias;
   final List<double> horas;
+  final int sessoes;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +43,10 @@ class GraficoScreen extends StatelessWidget {
                     titulo: 'Média diária',
                     valor: '${media.toStringAsFixed(1)} h',
                   ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _Indicador(titulo: 'Sessões', valor: '$sessoes'),
                 ),
               ],
             ),
