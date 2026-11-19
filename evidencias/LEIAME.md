@@ -1,9 +1,9 @@
 # Evidências de execução
 
-Coloque nesta pasta as capturas de tela ou o vídeo curto mostrando, **no Chrome e no Android**:
+| Arquivo | O que mostra |
+|---|---|
+| `github-actions-build-sucesso.jpg` | Build, testes e publicação (GitHub Actions) concluídos com sucesso |
+| `chrome-tela1-registro.jpg` | Chrome – Tela 1 (Registro de Estudo), sliders, total semanal e botão **Ver gráfico** |
+| `chrome-tela2-grafico.jpg` | Chrome – Tela 2 (Gráfico Semanal) com o gráfico de barras da biblioteca `fl_chart` |
 
-1. Tela 1 (Registro de Estudo)
-2. Clique em **Ver gráfico** → Tela 2 com o gráfico (fl_chart)
-3. Clique em **Voltar** → retorno à Tela 1
-
-Nomes sugeridos: `web-tela1.png`, `web-tela2.png`, `android-tela1.png`, `android-tela2.png` ou `demo.mp4`.
+Android: o APK é gerado pelo GitHub Actions (artifact `horas-de-estudo-apk`). Capturas de tela do Android devem ser adicionadas nesta pasta (`android-tela1.png`, `android-tela2.png`).

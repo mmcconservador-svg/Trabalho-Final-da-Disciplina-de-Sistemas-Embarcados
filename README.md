@@ -105,4 +105,4 @@ pubspec.yaml
 
 ## 7. Evidências de execução
 
-As capturas de tela / vídeo da execução no Chrome e no Android estão na pasta [`evidencias/`](evidencias/).
+As evidências estão na pasta [`evidencias/`](evidencias/): execução no Chrome (Tela 1, Tela 2 com o gráfico `fl_chart`) e o build/publicação automáticos no GitHub Actions. O APK de Android é gerado no mesmo fluxo (Actions → Artifacts → `horas-de-estudo-apk`).
